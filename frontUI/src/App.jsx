@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import Home from './pages/home'
+import Header from './components/header'
 
 function App() {
   return (
     <>
       <div>
-        <h1>School Demo Project</h1>
+        <Header/>
+        <Home/>
       </div>
     </>
   )
