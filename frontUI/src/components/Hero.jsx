@@ -15,37 +15,36 @@ const Hero = () => {
 
 
     {/* Content Section */}
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center px-4 py-8 z-20">
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center px-4 py-8 z-20 w-full">
       {/* Welcome Text */}
-      <p className="text-5xl font-semibold animate-bounce text-white mb-4 roboto">
+
+      <p className="text-2xl md:text-3xl lg:text-5xl font-semibold text-white mb-4 rubik animate-bounce">
         Welcome to SRM University Sikkim
       </p>
 
       {/* Main Heading */}
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 roboto">
+      <h1 className="text-xl  md:text-6xl font-extrabold text-white mb-6 roboto">
         Shape Your Future in the Heart<br />of Sikkim
       </h1>
 
       {/* Description Text */}
-      <p className="text-xl text-white mb-3 roboto">
+      <p className="text-md w-full md:text-xl text-white mb-3 raleway py-2">
         Experience world-class education amidst the breathtaking Himalayan landscape. Join a community<br />
         dedicated to innovation, culture, and academic excellence.
       </p>
 
       {/* Buttons */}
-      <div className="flex justify-center gap-6">
-        <Button
-          variant="contained"
-          className=""
+      <div className="flex flex-wrap justify-center gap-2 md:gap-6">
+        <button
+          className="btn btn-primary py-2 px-4 font-medium text-2xl"
         >
           Apply Now
-        </Button>
-        <Button
-          variant="contained"
-          className=""
+        </button>
+        <button
+          className="btn btn-success py-2 px-4 font-medium text-2xl"
         >
           Explore More
-        </Button>
+        </button>
       </div>
     </div>
   </div>
