@@ -13,8 +13,8 @@ const Footer = () => {
             <h4 className='text-white'>Quick Links</h4>
             <p className='text-white'>Academics</p>
             <p className='text-white'>Admissions</p>
-            <Link to="/adminlogin" className='text-white'>Research</Link>
-            <Link to="/adminsignup" className='text-white'>Campus Life</Link>
+            <Link to="/adminlogin" className='text-white noUnderLine  hover:text-blue-500'>Admin Login</Link><br/>
+            <Link to="/adminsignup" className='text-white noUnderLine hover:text-blue-500'>Admin SignUp</Link>
             </div>
             <div className="col-4">
             <h4 className='text-white'>Connect With Us</h4>
