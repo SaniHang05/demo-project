@@ -20,7 +20,7 @@ const sampleStudents = [
     id: '22IT102041',
     name: 'Nima Norbu Sherpa',
     course: 'Bachelor in Compute Application',
-    dateApplied: '2025-03-0',
+    dateApplied: '2025-03-03',
     status: 'Pending',
   },
   // Add more sample student data if needed
