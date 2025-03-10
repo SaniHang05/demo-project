@@ -47,5 +47,27 @@
     width: 0px;
 }
 
+/* For Admin Login and Signup page */
+.bg {
+  background-image: url('/images/bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+.glass {
+  background: rgba(255,255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(7.5px);
+  backdrop-filter: blur(7.5px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.logoimg {
+  background-image: url('../public/images/logo.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
