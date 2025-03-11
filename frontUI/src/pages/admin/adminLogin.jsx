@@ -79,17 +79,17 @@ export default function AdminLogin() {
           </div>
           {errors.password && <p className="text-red-500 text-xs mx-5">{errors.password}</p>}
 
-          <div className="mx-5 my-7 py-2">
-            <button type="submit" className="bg-black w-full h-[35px] rounded-sm text-white">
+          <div className="mx-5 my-7">
+            <button type="submit" className="btn btn-primary w-full py-2 text-2xl  rounded-sm text-white">
               Login
             </button>
           </div>
 
           <div
-            className="mx-5 my-3 py-2 flex items-center justify-center cursor-pointer"
-            onClick={() => navigate("/signup")}
+            className="mx-5 my-3 py-2 flex items-center justify-center cursor-pointer hover:text-blue-400"
+            onClick={() => navigate("/adminsignup")}
           >
-            <p className="text-sm">Don't have an account? / Register</p>
+            <p className="text-sm hover:text-blue-400">Don't have an account? / Register</p>
           </div>
         </form>
       </div>

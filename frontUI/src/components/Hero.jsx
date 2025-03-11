@@ -1,5 +1,6 @@
 import React from 'react'
 // import Button from '@mui/material/Button';
+import { motion } from 'framer-motion';
 import Header from './Header'
 const Hero = () => {
   return (
@@ -18,9 +19,19 @@ const Hero = () => {
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center px-4 py-8 z-20 w-full">
       {/* Welcome Text */}
 
-      <p className="text-2xl md:text-3xl lg:text-5xl font-semibold text-white mb-4 rubik animate-bounce">
-        Welcome to SRM University Sikkim
-      </p>
+      <motion.p
+      className="text-2xl md:text-3xl lg:text-5xl font-semibold text-white mb-4 rubik animate-bounce"
+      initial={{ opacity: 0, y: 50 }} // Start with opacity 0 and slightly below
+      animate={{ opacity: 1, y: [50, -10, 0] }}  // Make it bounce up and down infinitely
+      transition={{
+        duration: 2, // Duration for each bounce
+        ease: 'easeInOut', // Smooth easing effect
+        loop: true, // Infinite loop
+        repeatDelay: 0.5, // Delay between repetitions
+      }}
+    >
+      Welcome to SRM University Sikkim
+    </motion.p>
 
       {/* Main Heading */}
       <h1 className="text-xl  md:text-6xl font-extrabold text-white mb-6 roboto">
