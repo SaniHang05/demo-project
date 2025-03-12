@@ -1,6 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const SignupForm = () => {
   const {
@@ -16,14 +19,18 @@ const SignupForm = () => {
         data
       );
       console.log("Signup Successful:", response.data);
+      toast.success("Signup successful!");
     } catch (error) {
       console.error("Signup Error:", error.response?.data || error.message);
+      toast.error(
+        error.response?.data?.message || "Something went wrong. Please try again."
+      );
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-96">
+    <div className="bg-[url('/images/bg.jpg')] bg-cover bg-center h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white/30 backdrop-blur p-6 rounded-lg shadow-[0_25px_50px_-12px_rgb(222_39_39_/47%)] w-96">
         <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
@@ -33,10 +40,10 @@ const SignupForm = () => {
             <input
               type="text"
               {...register("username", { required: "Name is required" })}
-              className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full p-2 font-bold border border-black rounded-md focus:ring focus:ring-blue-300"
             />
-            {errors.name && (
-              <p className="text-red-500 text-xs">{errors.name.message}</p>
+            {errors.username && (
+              <p className="text-red-500 text-xs">{errors.username.message}</p>
             )}
           </div>
           <div className="mb-4">
@@ -52,7 +59,7 @@ const SignupForm = () => {
                   message: "Enter a valid email address",
                 },
               })}
-              className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full font-bold p-2 border border-black rounded-md focus:ring focus:ring-blue-300"
             />
             {errors.email && (
               <p className="text-red-500 text-xs">{errors.email.message}</p>
@@ -71,7 +78,7 @@ const SignupForm = () => {
                   message: "Password must be at least 6 characters long",
                 },
               })}
-              className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full font-bold p-2 border border-black rounded-md focus:ring focus:ring-blue-300"
             />
             {errors.password && (
               <p className="text-red-500 text-xs">{errors.password.message}</p>
@@ -79,12 +86,16 @@ const SignupForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition"
+            className="signup-btn w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition"
           >
             Sign Up
           </button>
+          <p className="mt-4 font-bold text-center text-sm black-gray-600">
+            Already have an account? <Link to="/login" className="text-blue-500 hover:underline">Login</Link>
+          </p>
         </form>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>
   );
 };

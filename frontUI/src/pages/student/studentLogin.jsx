@@ -1,8 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -20,13 +26,16 @@ const LoginForm = () => {
       );
 
       console.log("Login successful:", response.data);
-      alert("Login successful!");
+      toast.success("Login successful!");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
       console.error(
         "Login failed:",
         error.response?.data?.message || error.message
       );
-      alert(
+      toast.error(
         error.response?.data?.message ||
           "Something went wrong. Please try again."
       );
@@ -34,8 +43,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-96">
+    <div className="bg-[url('/images/bg.jpg')] bg-cover bg-center h-screen flex items-center justify-center">
+      <div className="bg-white/30 backdrop-blur-md p-6 rounded-lg shadow-[0_25px_50px_-12px_rgb(222_39_39_/47%)] w-96">
         <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
@@ -51,7 +60,7 @@ const LoginForm = () => {
                   message: "Enter a valid email address",
                 },
               })}
-              className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full p-2 font-bold border border-black rounded-md focus:ring focus:ring-blue-300"
             />
             {errors.email && (
               <p className="text-red-500 text-xs">{errors.email.message}</p>
@@ -70,7 +79,7 @@ const LoginForm = () => {
                   message: "Password must be at least 6 characters long",
                 },
               })}
-              className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full font-bold p-2 border border-black rounded-md focus:ring focus:ring-blue-300"
             />
             {errors.password && (
               <p className="text-red-500 text-xs">{errors.password.message}</p>
@@ -78,12 +87,19 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition"
+            className="login-btn w-full bg-blue-500 text-white p-2 hover:bg-blue-600 transition"
           >
             Login
           </button>
+          <p className="mt-4 font-bold text-center text-sm text-black-600">
+            Already have an account?{" "}
+            <Link to="/signup" className="text-blue-800 hover:underline">
+              Sign Up
+            </Link>
+          </p>
         </form>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>
   );
 };
