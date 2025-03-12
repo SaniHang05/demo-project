@@ -1,62 +1,61 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 .roboto {
-    font-family: "Roboto", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    font-variation-settings:
-      "wdth" 100;
-  }
-  .rubik {
-    font-family: "Rubik", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-  }
-  .raleway{
-    font-family: "Raleway", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-  }
-.noUnderLine{
-    text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
-.bgColor{
-    background-color: #08121f;
-    /* background-color: #150c0c; */
+.rubik {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
-.hoverUnderLine:hover{
-   /* border-bottom: 4px solid red; */
-   text-decoration: underline;
-   text-decoration-color: red;
-    text-decoration-thickness: 4px;
-    cursor: pointer;
+.raleway {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.noUnderLine {
+  text-decoration: none;
+}
+.bgColor {
+  background-color: #08121f;
+  /* background-color: #150c0c; */
+}
+.hoverUnderLine:hover {
+  /* border-bottom: 4px solid red; */
+  text-decoration: underline;
+  text-decoration-color: red;
+  text-decoration-thickness: 4px;
+  cursor: pointer;
 }
 
-.dropShadow:hover{
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); 
-    /* transform: scale(1.05);  */
-    filter: drop-shadow(7px 7px rgba(0, 255,255, 0.2));
+.dropShadow:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  /* transform: scale(1.05);  */
+  filter: drop-shadow(7px 7px rgba(0, 255, 255, 0.2));
 }
-::-webkit-scrollbar{
-    width: 0px;
+::-webkit-scrollbar {
+  width: 0px;
 }
 
 /* For Admin Login and Signup page */
 .bg {
-  background-image: url('/images/bg.jpg');
+  background-image: url("/images/bg.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .glass {
-  background: rgba(255,255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(7.5px);
@@ -65,9 +64,25 @@
 }
 
 .logoimg {
-  background-image: url('../public/images/logo.png');
+  background-image: url("../public/images/logo.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+/* -----------------Student login & Signup----------------- */
+
+.st-login-header,
+.st-signup-header {
+  color: #99a1af;
+}
+
+.st-signup-header {
+  margin-bottom: 30px;
+}
+
+.login-btn,
+.signup-btn {
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
