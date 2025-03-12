@@ -140,7 +140,7 @@ export default function AdminSignUp() {
           {/* Link to Login Page */}
           <div
             className="mx-5 my-3 py-2 flex items-center justify-center cursor-pointer"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/adminlogin")}
           >
             <p className="text-sm">Already have an account? / Login</p>
           </div>
