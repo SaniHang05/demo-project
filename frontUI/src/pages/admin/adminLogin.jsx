@@ -1,46 +1,45 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
+  const [serverError, setServerError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState({});
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const onSubmit = async (data) => {
+    setLoading(true);
+    setServerError("");
 
-  const validate = () => {
-    let newErrors = {};
+    try {
+      const response = await axios.post("http://localhost:8000/login", data, {
+        withCredentials: true, // Ensures JWT or session is stored
+      });
 
-    if (!formData.email) {
-      newErrors.email = "Email is required!";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Enter a valid email";
+      console.log("Login Success:", response.data);
+      alert("Login Successful!");
+      navigate("/dashboard"); // Redirect after login
+    } catch (error) {
+      console.error("Login Error:", error.response?.data || error.message);
+      setServerError(error.response?.data?.message || "Invalid credentials!");
     }
 
-    if (!formData.password) {
-      newErrors.password = "Password is required!";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      navigate("/dashboard");
-    }
+    setLoading(false);
   };
 
   return (
     <div className="w-full h-screen bg flex items-center justify-center tracking-wider relative">
       <img
-        src="/images/logo.png" 
+        src="/images/logo.png"
         alt="Login Image"
-        className="absolute top-8 w-80 h-35 object-cover drop-shadow-lg mt-5  "
+        className="absolute top-8 w-80 h-35 object-cover drop-shadow-lg mt-5"
       />
 
       <div className="w-11/12 sm:w-5/12 md:w-3/12 text-sm glass mt-12">
@@ -48,48 +47,63 @@ export default function AdminLogin() {
           <h2 className="text-2xl text-black font-medium">Login</h2>
         </div>
 
-        <form className="my-2" onSubmit={handleSubmit}>
+        <form className="my-2" onSubmit={handleSubmit(onSubmit)}>
+          {/* Email Field */}
           <div className="flex border-b-black border-b-2 mx-5 my-7 py-1">
             <input
               type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+              {...register("adminemail", {
+                required: "Email is required",
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Enter a valid email",
+                },
+              })}
               className="w-11/12 bg-transparent outline-none placeholder-black"
               placeholder="Email Address"
             />
             <div className="w-2/12 flex items-center justify-center">
-              <i className={`fa-${formData.email ? "solid" : "regular"} fa-envelope text-xl`}></i>
+              <i className="fa-solid fa-envelope text-xl"></i>
             </div>
           </div>
-          {errors.email && <p className="text-red-500 text-xs mx-5">{errors.email}</p>}
+          {errors.email && <p className="text-red-500 text-xs mx-5">{errors.email.message}</p>}
 
+          {/* Password Field */}
           <div className="flex border-b-black border-b-2 mx-5 my-7 py-1">
             <input
               type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
+              {...register("adminpassword", {
+                required: "Password is required",
+              })}
               className="w-11/12 bg-transparent outline-none placeholder-black"
               placeholder="Password"
             />
             <div className="w-2/12 flex items-center justify-center">
-              <i className={`fa-solid ${formData.password ? "fa-lock" : "fa-lock-open"} text-xl`}></i>
+              <i className="fa-solid fa-lock text-xl"></i>
             </div>
           </div>
-          {errors.password && <p className="text-red-500 text-xs mx-5">{errors.password}</p>}
+          {errors.password && <p className="text-red-500 text-xs mx-5">{errors.password.message}</p>}
 
+          {/* Server Error */}
+          {serverError && <p className="text-red-500 text-xs mx-5">{serverError}</p>}
+
+          {/* Submit Button */}
           <div className="mx-5 my-7">
-            <button type="submit" className="btn btn-primary w-full py-2 text-2xl  rounded-sm text-white">
-              Login
+            <button
+              type="submit"
+              className="bg-black w-full h-[35px] rounded-sm text-white"
+              disabled={loading}
+            >
+              {loading ? "Logging in..." : "Login"}
             </button>
           </div>
 
+          {/* Link to Signup Page */}
           <div
-            className="mx-5 my-3 py-2 flex items-center justify-center cursor-pointer hover:text-blue-400"
+            className="mx-5 my-3 py-2 flex items-center justify-center cursor-pointer"
             onClick={() => navigate("/adminsignup")}
           >
-            <p className="text-sm hover:text-blue-400">Don't have an account? / Register</p>
+            <p className="text-sm">Don't have an account? / Register</p>
           </div>
         </form>
       </div>
