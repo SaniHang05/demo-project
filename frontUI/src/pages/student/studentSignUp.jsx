@@ -30,7 +30,7 @@ const SignupForm = () => {
 
   return (
     <div className="bg-[url('/images/bg.jpg')] bg-cover bg-center h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white/30 backdrop-blur p-6 rounded-lg shadow-[0_25px_50px_-12px_rgb(222_39_39_/47%)] w-96">
+      <div className="bg-white/30 backdrop-blur-[4px] p-6 rounded-lg shadow-[0_25px_50px_-12px_rgb(222_39_39_/47%)] w-96">
         <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
