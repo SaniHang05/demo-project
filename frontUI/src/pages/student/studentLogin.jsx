@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import Logo from "/images/logo.png";
 const LoginForm = () => {
   const navigate = useNavigate();
 
@@ -45,6 +45,7 @@ const LoginForm = () => {
   return (
     <div className="bg-[url('/images/bg.jpg')] bg-cover bg-center h-screen flex items-center justify-center">
       <div className="bg-white/30 backdrop-blur-[4px] p-6 rounded-lg shadow-[0_25px_50px_-12px_rgb(222_39_39_/47%)] w-96">
+        <img src={Logo} className="w-48 mx-auto"/>
         <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
@@ -53,6 +54,7 @@ const LoginForm = () => {
             </label>
             <input
               type="email"
+              placeholder="Enter Your Email"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -60,10 +62,10 @@ const LoginForm = () => {
                   message: "Enter a valid email address",
                 },
               })}
-              className="w-full p-2 font-bold border border-black rounded-md focus:ring focus:ring-blue-300"
+              className="w-full p-2 outline-0 font-bold ring-2 ring-black rounded-md focus:ring-2 focus:ring-blue-300"
             />
             {errors.email && (
-              <p className="text-red-500 text-xs">{errors.email.message}</p>
+              <p className="text-red-200 text-xs py-2">{errors.email.message}</p>
             )}
           </div>
           <div className="mb-4">
@@ -72,6 +74,7 @@ const LoginForm = () => {
             </label>
             <input
               type="password"
+              placeholder="Enter Your Password"
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -79,10 +82,11 @@ const LoginForm = () => {
                   message: "Password must be at least 6 characters long",
                 },
               })}
-              className="w-full font-bold p-2 border border-black rounded-md focus:ring focus:ring-blue-300"
+              className="w-full outline-0 font-bold p-2
+               ring-2 ring-black rounded-md focus:ring-2 focus:ring-blue-300"
             />
             {errors.password && (
-              <p className="text-red-500 text-xs">{errors.password.message}</p>
+              <p className="text-red-200 text-xs">{errors.password.message}</p>
             )}
           </div>
           <button

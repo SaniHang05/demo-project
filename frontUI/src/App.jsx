@@ -9,6 +9,7 @@ import AdminDashboard from "./pages/admin/adminDashboard";
 import StudentDetails from "./pages/admin/studentDetails";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/AuthContext";
+import StudentDashboard from "./pages/student/StudentDashboard";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<StudentSignUp />} />
             <Route path="/login" element={<StudentLogin />} />
+            <Route path="/dashboard" element={<StudentDashboard/>} />
             <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="/adminsignup" element={<AdminSignUp />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
