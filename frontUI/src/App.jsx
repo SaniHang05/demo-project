@@ -6,6 +6,7 @@ import AdminLogin from "./pages/admin/adminLogin";
 import StudentSignUp from "./pages/student/studentSignUp";
 import AdminSignUp from "./pages/admin/adminSignUp";
 import AdminDashboard from "./pages/admin/adminDashboard";
+import StudentDetails from "./pages/admin/studentDetails";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -20,7 +21,8 @@ function App() {
             <Route path="/login" element={<StudentLogin />} />
             <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="/adminsignup" element={<AdminSignUp />} />
-            <Route path="/admindashboard" element={<AdminDashboard />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/student/:id" element={<StudentDetails />} />
           </Routes>
     </>
   );

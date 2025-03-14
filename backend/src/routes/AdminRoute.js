@@ -28,8 +28,12 @@ adminrouter.route("/:id/appliaction").put(
 )
 
 adminrouter.route("/applications").get(
-    Authentication,
+    // Authentication,
+    
     Applications
 )
 
 export { adminrouter }
+
+
+
