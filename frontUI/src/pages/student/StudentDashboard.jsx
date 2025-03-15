@@ -42,6 +42,7 @@ function StudentDashboard() {
   };
 
   return (
+    <div className="MainContainer">
     <div className="container p-4 border-2 rounded-2xl">
       <img src={Logo} className="w-44 mx-auto"/>
       <h3 className="text-center roboto">Student Registration</h3>
@@ -142,6 +143,7 @@ function StudentDashboard() {
         <button type="button" onClick={ResetFun} className="btn btn-success my-2">Reset</button>
         <button type="submit" className="btn btn-primary my-2 py-1">Submit</button>
       </form>
+    </div>
     </div>
   );
 }

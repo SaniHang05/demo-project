@@ -75,3 +75,17 @@
 .signup-btn {
   border-radius: 5px;
 }
+
+/* StudentDashBoard */
+.MainContainer {
+  background:#08121f;
+  font-family: 'Arial', sans-serif;
+  color: #f7f6f9;
+  display: flex;
+  padding: 170px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  margin: 0;
+  
+}

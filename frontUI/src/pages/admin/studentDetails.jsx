@@ -1,101 +1,6 @@
-// // src/components/StudentDetails.jsx
-// import React, { useState } from 'react';
-// import { useParams, useNavigate } from 'react-router-dom';
-// import './StudentDetails.css';
-
-// const sampleStudents = [
-//   {
-//     id: '22IT102021',
-//     name: 'Tashi Dawa Lepcha',
-//     course: 'Computer Science',
-//     dateApplied: '2025-03-01',
-//     status: 'Pending',
-//   },
-//   {
-//     id: '22IT102008',
-//     name: 'Sonihang Subba',
-//     course: 'Bachelor in Compute Application',
-//     dateApplied: '2025-03-02',
-//     status: 'Pending',
-//   },
-//   {
-//     id: '22IT102041',
-//     name: 'Nima Norbu Sherpa',
-//     course: 'Bachelor in Compute Application',
-//     dateApplied: '2025-03-03',
-//     status: 'Pending',
-//   },
-//   // Add more sample student data if needed
-// ];
-
-// const StudentDetails = () => {
-//   const { id } = useParams();
-//   const navigate = useNavigate();
-  
-//   // Find the student by id from the sample data
-//   const student = sampleStudents.find((s) => s.id === id);
-  
-//   const [remarks, setRemarks] = useState('');
-//   const [status, setStatus] = useState(student ? student.status : '');
-
-//   if (!student) {
-//     return <div>Student not found.</div>;
-//   }
-
-//   const handleAction = (action) => {
-//     setStatus(action);
-//     alert(`Student ${student.id} ${action} with remarks: ${remarks}`);
-//     // In a real app, you would update the data store here.
-//     navigate('/'); // Go back to the dashboard
-//   };
-
-//   return (
-//     <div className="student-details">
-//       <header className="header">
-//         <div className="logo">Student Details</div>
-//         <div className="user-info">
-//           Tashi Dawa Lepcha | <a href="#logout">Logout</a>
-//         </div>
-//       </header>
-//       <div className="container">
-//         <h2>{student.name}</h2>
-//         <p><strong>Reg. ID:</strong> {student.id}</p>
-//         <p><strong>Course:</strong> {student.course}</p>
-//         <p><strong>Date Applied:</strong> {student.dateApplied}</p>
-//         <p><strong>Status:</strong> {status}</p>
-//         <textarea
-//           rows="4"
-//           placeholder="Add remarks (optional)..."
-//           value={remarks}
-//           onChange={(e) => setRemarks(e.target.value)}
-//         />
-//         <div className="actions">
-//           {status === 'Pending' && (
-//             <>
-//               <button className="btn btn-accept" onClick={() => handleAction('Accepted')}>
-//                 Accept
-//               </button>
-//               <button className="btn btn-reject" onClick={() => handleAction('Rejected')}>
-//                 Reject
-//               </button>
-//             </>
-//           )}
-//           <button className="btn btn-back" onClick={() => navigate(-1)}>
-//             Back
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default StudentDetails;
-
-//====> Try
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import './studentDetails.css';
-
+import { useParams, useNavigate,Link } from 'react-router-dom';
+import DocFile from "../../../../backend/public/temp/Aadharcardfrontpage.png";
 const sampleStudents = [
   {
     id: '22IT102021',
@@ -147,6 +52,7 @@ const sampleStudents = [
 
 const StudentDetails = () => {
   const { id } = useParams();
+  const [comment,setComment] = useState(false);
   const navigate = useNavigate();
 
   // Find the student by id from the sample data
@@ -162,60 +68,82 @@ const StudentDetails = () => {
     setStatus('Accepted');
     alert(`Student ${student.id} has been accepted.`);
     // In a real app, update the data store here.
-    navigate('/'); // Return to the dashboard
+    navigate('/admindashboard'); // Return to the dashboard
   };
 
   const handleReject = () => {
-    const remarks = window.prompt("Please enter remarks for rejection:");
-    if (remarks !== null && remarks.trim() !== "") {
+
       setStatus('Rejected');
-      alert(`Student ${student.id} has been rejected with remarks: ${remarks}`);
-      // In a real app, update the data store here.
-      navigate('/'); // Return to the dashboard
-    } else {
-      alert("Rejection cancelled. Remarks are required.");
-    }
+      //alert(`Student ${student.id} has been rejected with remarks: ${remarks}`);
+      setComment(true)
+      // navigate('/admindashboard'); // Return to the dashboard
   };
 
   return (
-    <div className="student-details">
-      <header className="header">
-        <div className="logo">Student Details</div>
-        <div className="user-info">
-          Tashi Dawa Lepcha | <a href="#logout">Logout</a>
-        </div>
-      </header>
-      <div className="container">
-        <h2>{student.name}</h2>
-        <img src={student.photo} alt={`${student.name}'s photo`} className="student-photo" />
-        <p><strong>Application_Id:</strong> {student.id}</p>
+    <div className="bg-gray-100 min-h-screen flex flex-col items-center">
+    {/* Header Section */}
+    <header className="w-full bg-blue-600 text-white py-4 px-6 flex justify-between items-center shadow-lg">
+      <div className="text-3xl font-semibold">Student Details</div>
+      <div className="text-lg">
+        Tashi Dawa Lepcha | <Link to="/" className="text-white noUnderLine hover:underline">Logout</Link>
+      </div>
+    </header>
+
+    {/* Main Content Container */}
+    <div className="container max-w-4xl mx-auto p-6 mt-6 bg-white rounded-lg shadow-lg">
+      {/* Student Information */}
+      <div className='flex justify-around'>
+      <div className="space-y-4 text-lg text-gray-700">
+      <h2 className="text-3xl font-semibold text-gray-800 mb-4">{student.name}</h2>
+        <p><strong>Application Id:</strong> {student.id}</p>
         <p><strong>Course:</strong> {student.course}</p>
         <p><strong>Date Applied:</strong> {student.dateApplied}</p>
-        <p><strong>Status:</strong> {status}</p>
+        <p><strong>Status:</strong> <span className={`font-semibold ${status === 'Accepted' ? 'text-green-600' : status === 'Rejected' ? 'text-red-600' : 'text-yellow-600'}`}>{status}</span></p>
         <p><strong>Email:</strong> {student.email}</p>
         <p><strong>Phone:</strong> {student.phone}</p>
         <p><strong>Date of Birth:</strong> {student.dob}</p>
         <p><strong>Gender:</strong> {student.gender}</p>
         <p><strong>State:</strong> {student.state}</p>
-        <p><strong>City:</strong> {student.city}</p>
-        <p><strong>Address:</strong> {student.address}</p>
-        <div className="actions">
-          {status === 'Pending' && (
-            <>
-              <button className="btn btn-accept" onClick={handleAccept}>
-                Accept
-              </button>
-              <button className="btn btn-reject" onClick={handleReject}>
-                Reject
-              </button>
-            </>
-          )}
-          <button className="btn btn-back" onClick={() => navigate(-1)}>
-            Back
-          </button>
-        </div>
+        {
+          comment ?(
+<input type="text" placeholder="Enter The Comment" className='ring-2 ring-blue-600 px-3 p-2  rounded-md' />
+          ):(
+            <input type="text" placeholder="Enter The Comment" className=' bg-gray-200 ring-black-600 px-3 p-2  rounded-md' disabled/>
+          )
+        }
+        
+      </div>
+      <div>
+        <img src={DocFile} className='w-96 my-auto'/>
+      </div>
+      </div>
+      {/* Action Buttons */}
+      <div className="mt-6 flex space-x-4 justify-center">
+        {status === 'Pending' && (
+          <>
+            <button 
+              className="px-10 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300"
+              onClick={handleAccept}
+            >
+              Accept
+            </button>
+            <button 
+              className="px-10 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300"
+              onClick={handleReject}
+            >
+              Reject
+            </button>
+          </>
+        )}
+        <button 
+          className="px-10 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition duration-300"
+          onClick={() => navigate(-1)}
+        >
+          Back
+        </button>
       </div>
     </div>
+  </div>
   );
 };
 
