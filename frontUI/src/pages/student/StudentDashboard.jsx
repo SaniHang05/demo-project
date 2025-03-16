@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../../styles/StudentDashboard.css";
+// import "../../styles/StudentDashboard.css";
 import Logo from "../../../public/images/logo.png"
 function StudentDashboard() {
   const [values, setValues] = useState({
@@ -44,7 +44,7 @@ function StudentDashboard() {
   return (
     <div className="MainContainer">
     <div className="container p-4 border-2 rounded-2xl">
-      <img src={Logo} className="w-44 mx-auto"/>
+      <img src="/images/logo.png" className="w-44 mx-auto"/>
       <h3 className="text-center roboto">Student Registration</h3>
       <form onSubmit={handleSubmit} className="flex flex-col justify-center w-[36rem] mx-auto">
         <label htmlFor="name" className="text-2xl font-medium">Name</label>

@@ -28,8 +28,8 @@ const LoginForm = () => {
       console.log("Login successful:", response.data);
       toast.success("Login successful!");
       setTimeout(() => {
-        navigate("/");
-      }, 2000);
+        navigate("/dashboard");
+      }, 1000);
     } catch (error) {
       console.error(
         "Login failed:",

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate,Link } from 'react-router-dom';
-import DocFile from "../../../../backend/public/temp/Aadharcardfrontpage.png";
+// import DocFile from "../../../../backend/public/temp/Aadharcardfrontpage.png";
 const sampleStudents = [
   {
     id: '22IT102021',
@@ -114,7 +114,7 @@ const StudentDetails = () => {
         
       </div>
       <div>
-        <img src={DocFile} className='w-96 my-auto'/>
+        <img src="/public/images/Aadharcardfrontpage.PNG" className='w-96 my-auto'/>
       </div>
       </div>
       {/* Action Buttons */}
